@@ -10,114 +10,113 @@ using Laitehallinta.Models;
 
 namespace Laitehallinta.Controllers
 {
-    public class HenkiloController : Controller
+    public class LaiteController : Controller
     {
         private SeurantaEntities db = new SeurantaEntities();
 
-        
         // GET: Haku
         public ActionResult Index(string searching)
         {
-            return View(db.Henkilot.Where(x => x.Etunimi.StartsWith(searching) || searching == null).ToList());
+            return View(db.Laitteet.Where(x => x.Merkki.StartsWith(searching) || searching == null).ToList());
         }
         /*
-        // GET: Henkilo
+        // GET: Laitteets
         public ActionResult Index()
         {
-            return View(db.Henkilot.ToList());
+            return View(db.Laitteet.ToList());
         }
         */
-        // GET: Henkilo/Details/5
+        // GET: Laite/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Henkilot henkilot = db.Henkilot.Find(id);
-            if (henkilot == null)
+            Laitteet laitteet = db.Laitteet.Find(id);
+            if (laitteet == null)
             {
                 return HttpNotFound();
             }
-            return View(henkilot);
+            return View(laitteet);
         }
 
-        // GET: Henkilo/Create
+        // GET: Laitteets/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Henkilo/Create
+        // POST: Laitteets/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "HenkiloID,Etunimi,Sukunimi")] Henkilot henkilot)
+        public ActionResult Create([Bind(Include = "LaiteID,Sarjanumero,Merkki,Malli,Muuta")] Laitteet laitteet)
         {
             if (ModelState.IsValid)
             {
-                db.Henkilot.Add(henkilot);
+                db.Laitteet.Add(laitteet);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(henkilot);
+            return View(laitteet);
         }
 
-        // GET: Henkilo/Edit/5
+        // GET: Laitteets/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Henkilot henkilot = db.Henkilot.Find(id);
-            if (henkilot == null)
+            Laitteet laitteet = db.Laitteet.Find(id);
+            if (laitteet == null)
             {
                 return HttpNotFound();
             }
-            return View(henkilot);
+            return View(laitteet);
         }
 
-        // POST: Henkilo/Edit/5
+        // POST: Laitteets/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "HenkiloID,Etunimi,Sukunimi")] Henkilot henkilot)
+        public ActionResult Edit([Bind(Include = "LaiteID,Sarjanumero,Merkki,Malli,Muuta")] Laitteet laitteet)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(henkilot).State = EntityState.Modified;
+                db.Entry(laitteet).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(henkilot);
+            return View(laitteet);
         }
 
-        // GET: Henkilo/Delete/5
+        // GET: Laitteets/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Henkilot henkilot = db.Henkilot.Find(id);
-            if (henkilot == null)
+            Laitteet laitteet = db.Laitteet.Find(id);
+            if (laitteet == null)
             {
                 return HttpNotFound();
             }
-            return View(henkilot);
+            return View(laitteet);
         }
 
-        // POST: Henkilo/Delete/5
+        // POST: Laitteets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Henkilot henkilot = db.Henkilot.Find(id);
-            db.Henkilot.Remove(henkilot);
+            Laitteet laitteet = db.Laitteet.Find(id);
+            db.Laitteet.Remove(laitteet);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

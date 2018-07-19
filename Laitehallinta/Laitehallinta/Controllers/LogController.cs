@@ -10,114 +10,129 @@ using Laitehallinta.Models;
 
 namespace Laitehallinta.Controllers
 {
-    public class HenkiloController : Controller
+    public class LogController : Controller
     {
         private SeurantaEntities db = new SeurantaEntities();
 
-        
         // GET: Haku
         public ActionResult Index(string searching)
+
         {
-            return View(db.Henkilot.Where(x => x.Etunimi.StartsWith(searching) || searching == null).ToList());
+
+            return View(db.Logi.Where(i => i.Laitteet.Merkki.Equals(searching) || searching == null).ToList());
         }
         /*
-        // GET: Henkilo
+        // GET: Log
         public ActionResult Index()
         {
-            return View(db.Henkilot.ToList());
+            var logi = db.Logi.Include(l => l.Henkilot).Include(l => l.Laitteet).Include(l => l.Tilat);
+            return View(logi.ToList());
         }
         */
-        // GET: Henkilo/Details/5
+        // GET: Log/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Henkilot henkilot = db.Henkilot.Find(id);
-            if (henkilot == null)
+            Logi logi = db.Logi.Find(id);
+            if (logi == null)
             {
                 return HttpNotFound();
             }
-            return View(henkilot);
+            return View(logi);
         }
 
-        // GET: Henkilo/Create
+        // GET: Log/Create
         public ActionResult Create()
         {
+            ViewBag.HenkiloID = new SelectList(db.Henkilot, "HenkiloID", "Etunimi");
+            ViewBag.KirjaajaID = new SelectList(db.Logi, "HID", "Etunimi");
+            ViewBag.LaiteID = new SelectList(db.Laitteet, "LaiteID", "Sarjanumero");
+            ViewBag.TilaID = new SelectList(db.Tilat, "TilaID", "Tarkennus");
             return View();
         }
 
-        // POST: Henkilo/Create
+        // POST: Log/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "HenkiloID,Etunimi,Sukunimi")] Henkilot henkilot)
+        public ActionResult Create([Bind(Include = "LogiID,SijaintiID,PaikkaID,KirjaajaID,Kirjattusisään,HenkiloID,LaiteID,TilaID")] Logi logi)
         {
             if (ModelState.IsValid)
             {
-                db.Henkilot.Add(henkilot);
+                db.Logi.Add(logi);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(henkilot);
+            ViewBag.HenkiloID = new SelectList(db.Henkilot, "HenkiloID", "Etunimi", logi.HenkiloID);
+            ViewBag.LaiteID = new SelectList(db.Laitteet, "LaiteID", "Sarjanumero", logi.LaiteID);
+            ViewBag.TilaID = new SelectList(db.Tilat, "TilaID", "Tarkennus", logi.TilaID);
+            return View(logi);
         }
 
-        // GET: Henkilo/Edit/5
+        // GET: Log/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Henkilot henkilot = db.Henkilot.Find(id);
-            if (henkilot == null)
+            Logi logi = db.Logi.Find(id);
+            if (logi == null)
             {
                 return HttpNotFound();
             }
-            return View(henkilot);
+            ViewBag.HenkiloID = new SelectList(db.Henkilot, "HenkiloID", "Etunimi", logi.HenkiloID);
+            ViewBag.LaiteID = new SelectList(db.Laitteet, "LaiteID", "Sarjanumero", logi.LaiteID);
+            ViewBag.TilaID = new SelectList(db.Tilat, "TilaID", "Tarkennus", logi.TilaID);
+            return View(logi);
         }
 
-        // POST: Henkilo/Edit/5
+        // POST: Log/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "HenkiloID,Etunimi,Sukunimi")] Henkilot henkilot)
+        public ActionResult Edit([Bind(Include = "LogiID,SijaintiID,PaikkaID,KirjaajaID,Kirjattusisään,HenkiloID,LaiteID,TilaID")] Logi logi)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(henkilot).State = EntityState.Modified;
+                db.Entry(logi).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(henkilot);
+            ViewBag.HenkiloID = new SelectList(db.Henkilot, "HenkiloID", "Etunimi", logi.HenkiloID);
+            ViewBag.LaiteID = new SelectList(db.Laitteet, "LaiteID", "Sarjanumero", logi.LaiteID);
+            ViewBag.TilaID = new SelectList(db.Tilat, "TilaID", "Tarkennus", logi.TilaID);
+            return View(logi);
         }
 
-        // GET: Henkilo/Delete/5
+        // GET: Log/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Henkilot henkilot = db.Henkilot.Find(id);
-            if (henkilot == null)
+            Logi logi = db.Logi.Find(id);
+            if (logi == null)
             {
                 return HttpNotFound();
             }
-            return View(henkilot);
+            return View(logi);
         }
 
-        // POST: Henkilo/Delete/5
+        // POST: Log/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Henkilot henkilot = db.Henkilot.Find(id);
-            db.Henkilot.Remove(henkilot);
+            Logi logi = db.Logi.Find(id);
+            db.Logi.Remove(logi);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

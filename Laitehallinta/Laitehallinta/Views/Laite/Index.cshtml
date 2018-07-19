@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Laitehallinta.Models.Laitteet>
+
+<h2>Laitteet</h2>
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    @Html.Partial("_CreateButtonPartial")
+</p>
+
+<br /><br />
+@using (Html.BeginForm("Index", "Laite", FormMethod.Get))
+{
+    @Html.TextBox("searching")<input type="submit" value="search" />
+}
+<table class="table table=striped">
+    <thead>
+        <tr>
+            <th>LaiteID</th>
+            <th>Sarjanumero</th>
+            <th>Merkki</th>
+            <th>Malli</th>
+            <th>Muuta</th>
+        </tr>
+
+
+    </thead>
+    <tbody>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" style="color = red">
+                    No Match Any Document
+                </td>
+            </tr>
+        }
+        else
+        {
+
+            foreach (var item in Model)
+            {
+
+            <tr>
+                <td>@item.LaiteID</td>
+                <td>@item.Sarjanumero</td>
+                <td>@item.Merkki</td>
+                <td>@item.Malli</td>
+                <td>@item.Muuta</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.LaiteID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.LaiteID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.LaiteID })
+                </td>
+            </tr>
+            }
+        }
+
+    </tbody>
+</table>
+

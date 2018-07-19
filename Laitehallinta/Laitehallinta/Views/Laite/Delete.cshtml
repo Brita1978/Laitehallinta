@@ -1,0 +1,56 @@
+﻿@model Laitehallinta.Models.Laitteet
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Poista</h2>
+
+<h3>Haluatko varmasti poistaa laitteen?</h3>
+<div>
+    <h4>Poista laite</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sarjanumero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sarjanumero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Merkki)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Merkki)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Malli)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Malli)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Muuta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Muuta)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.Partial("_BackToListButtonPartial", "Index")
+        </div>
+    }
+</div>

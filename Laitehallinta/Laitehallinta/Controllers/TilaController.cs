@@ -10,114 +10,113 @@ using Laitehallinta.Models;
 
 namespace Laitehallinta.Controllers
 {
-    public class HenkiloController : Controller
+    public class TilaController : Controller
     {
         private SeurantaEntities db = new SeurantaEntities();
 
-        
         // GET: Haku
         public ActionResult Index(string searching)
         {
-            return View(db.Henkilot.Where(x => x.Etunimi.StartsWith(searching) || searching == null).ToList());
+            return View(db.Tilat.Where(x => x.Tarkennus.StartsWith(searching) || searching == null).ToList());
         }
         /*
-        // GET: Henkilo
+        // GET: Tila
         public ActionResult Index()
         {
-            return View(db.Henkilot.ToList());
+            return View(db.Tilat.ToList());
         }
         */
-        // GET: Henkilo/Details/5
+        // GET: Tila/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Henkilot henkilot = db.Henkilot.Find(id);
-            if (henkilot == null)
+            Tilat tilat = db.Tilat.Find(id);
+            if (tilat == null)
             {
                 return HttpNotFound();
             }
-            return View(henkilot);
+            return View(tilat);
         }
 
-        // GET: Henkilo/Create
+        // GET: Tila/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Henkilo/Create
+        // POST: Tila/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "HenkiloID,Etunimi,Sukunimi")] Henkilot henkilot)
+        public ActionResult Create([Bind(Include = "TilaID,Tarkennus")] Tilat tilat)
         {
             if (ModelState.IsValid)
             {
-                db.Henkilot.Add(henkilot);
+                db.Tilat.Add(tilat);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(henkilot);
+            return View(tilat);
         }
 
-        // GET: Henkilo/Edit/5
+        // GET: Tila/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Henkilot henkilot = db.Henkilot.Find(id);
-            if (henkilot == null)
+            Tilat tilat = db.Tilat.Find(id);
+            if (tilat == null)
             {
                 return HttpNotFound();
             }
-            return View(henkilot);
+            return View(tilat);
         }
 
-        // POST: Henkilo/Edit/5
+        // POST: Tila/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "HenkiloID,Etunimi,Sukunimi")] Henkilot henkilot)
+        public ActionResult Edit([Bind(Include = "TilaID,Tarkennus")] Tilat tilat)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(henkilot).State = EntityState.Modified;
+                db.Entry(tilat).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(henkilot);
+            return View(tilat);
         }
 
-        // GET: Henkilo/Delete/5
+        // GET: Tila/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Henkilot henkilot = db.Henkilot.Find(id);
-            if (henkilot == null)
+            Tilat tilat = db.Tilat.Find(id);
+            if (tilat == null)
             {
                 return HttpNotFound();
             }
-            return View(henkilot);
+            return View(tilat);
         }
 
-        // POST: Henkilo/Delete/5
+        // POST: Tila/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Henkilot henkilot = db.Henkilot.Find(id);
-            db.Henkilot.Remove(henkilot);
+            Tilat tilat = db.Tilat.Find(id);
+            db.Tilat.Remove(tilat);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -5,6 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5de5376acc114848b8476c13dcfef57f" Name="Diagram1">
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <EntityTypeShape EntityType="SeurantaModel.Henkilot" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeurantaModel.Laitteet" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeurantaModel.Logi" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeurantaModel.Tilat" Width="1.5" PointX="5.125" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="SeurantaModel.FK_Logi_Henkilot" ManuallyRouted="false" />
+        <AssociationConnector Association="SeurantaModel.FK_Logi_Laitteet" ManuallyRouted="false" />
+        <AssociationConnector Association="SeurantaModel.FK_Logi_Tilat" ManuallyRouted="false" />
+=======
+        
+        
+        
+        
+        
+        
+        
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0e0d99a4ef833e896cd2991b8a45da86394d9d2e
+=======
         <EntityTypeShape EntityType="SeurantaModel.Henkilot" Width="1.5" PointX="0.75" PointY="7.25" />
         <EntityTypeShape EntityType="SeurantaModel.Laitteet" Width="1.5" PointX="0.75" PointY="1.5" />
         <EntityTypeShape EntityType="SeurantaModel.Logi" Width="1.5" PointX="3" PointY="1" />
@@ -12,6 +31,7 @@
         <AssociationConnector Association="SeurantaModel.FK_Logi_Henkilot" />
         <AssociationConnector Association="SeurantaModel.FK_Logi_Laitteet" />
         <AssociationConnector Association="SeurantaModel.FK_Logi_Tilat" />
+>>>>>>> 0e0d99a4ef833e896cd2991b8a45da86394d9d2e
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
