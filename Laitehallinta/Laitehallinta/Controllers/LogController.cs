@@ -18,7 +18,6 @@ namespace Laitehallinta.Controllers
         public ActionResult Index(string searching)
 
         {
-
             return View(db.Logi.Where(i => i.Laitteet.Merkki.Equals(searching) || searching == null).ToList());
         }
         /*

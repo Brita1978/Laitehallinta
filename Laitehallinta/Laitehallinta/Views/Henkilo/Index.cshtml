@@ -1,8 +1,11 @@
 ﻿@model IEnumerable<Laitehallinta.Models.Henkilot>
-<h2>Henkilöt</h2>
+
+
 @{
     ViewBag.Title = "Index";
 }
+
+<h2>Henkilöt</h2>
 
 <p>
     @Html.Partial("_CreateButtonPartial")
@@ -20,14 +23,13 @@
             <th>Sukunimi</th>
             <th>HenkiloID</th>
         </tr>
-        
-
     </thead>
+
     <tbody>
         @if (Model.Count() == 0)
         {
             <tr>
-                <td colspan="3" style color = "red">
+                <td colspan="3" style = "color:red;">
                     No Match Any Document
                 </td>
             </tr>
