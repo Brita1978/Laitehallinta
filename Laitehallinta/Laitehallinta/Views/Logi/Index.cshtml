@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Laitehallinta.Models.Logi>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.Partial("_CreateButtonPartial")
+</p>
+
+<br /><br />
+@using (Html.BeginForm("Index", "Logi", FormMethod.Get))
+{
+    @Html.TextBox("searching")<input type="submit" value="search" />
+}
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.SijaintiID)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.PaikkaID)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.KirjaajaID)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Kirjattusisään)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Henkilot.Etunimi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Laitteet.Sarjanumero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tilat.Tarkennus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Laitteet.Merkki)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.SijaintiID)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.PaikkaID)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.KirjaajaID)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Kirjattusisään)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Henkilot.Etunimi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Laitteet.Sarjanumero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tilat.Tarkennus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Laitteet.Merkki)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.LogiID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.LogiID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.LogiID })
+        </td>
+    </tr>
+    }
+
+</table>

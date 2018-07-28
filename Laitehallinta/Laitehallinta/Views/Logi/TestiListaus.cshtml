@@ -1,0 +1,170 @@
+﻿@model IEnumerable<Laitehallinta.Models.LaiteTallennusViewModel>
+
+@{
+    ViewBag.Title = "TestiListaus";
+}
+
+@section scripts {
+
+    <script src="~/Scripts/Application/Logic.js"></script>
+    @*Hakutoimintojen scriptit:*@
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+            initAssetAssignment();
+        })
+
+
+        //Hakutoimintojen funtion määritys:
+        $(function () {
+            //sivun alustus
+            //alert("Sivun alustus");
+            var studentTaulu = $("#laitehallintaTable").DataTable();
+        });
+    </script>
+}
+
+@section head {
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @*Hakutoimintojen section head tyylimääritykset:*@
+    <link href="~/Scripts/DataTables/datatables.css" rel="stylesheet" />
+    <link href="~/Scripts/DataTables/dataTables.bootstrap.css" rel="stylesheet" />
+}
+
+
+<h2>TestiListaus</h2>
+
+<p>
+    <input id="Tarkennus" type="text" placeholder="tarkennus" />
+</p>
+
+<p>
+    <input id="Merkki" type="text" placeholder="merkki" />
+</p>
+
+@*<p>
+        <input id="Nimi" type="text" placeholder="nimi" />
+    </p>*@
+
+<button id="AssignAssetButton" class="w3-btn w3-large"> Tallenna laitetieto</button>
+
+<hr />
+<p>
+    @Html.Partial("_CreateButtonPartial")
+</p>
+
+<br /><br />
+@*@using (Html.BeginForm("TestiListaus", "Logi", FormMethod.Get))
+    {
+        @Html.TextBox("searching")<input type="submit" value="search" />
+    }*@
+
+
+@*<p>
+            @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+<table class="table table-striped" id="laitehallintaTable">
+    <thead>
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.SijaintiID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PaikkaID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KirjaajaID)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Kirjattusisään)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Etunimi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullNameH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sarjanumero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tarkennus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Merkki)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Malli)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Muuta)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" style="color:red">
+                    No Match Any Document
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.SijaintiID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaikkaID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KirjaajaID)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Kirjattusisään)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Etunimi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullNameH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sarjanumero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tarkennus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Merkki)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Malli)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Muuta)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("LaiteKirjausEdit", "LaiteKirjausEdit", new { id = item.LogiID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.LogiID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.LogiID })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

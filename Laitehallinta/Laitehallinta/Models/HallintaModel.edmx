@@ -27,7 +27,7 @@
           <Key>
             <PropertyRef Name="LogiID" />
           </Key>
-          <Property Name="LogiID" Type="int" Nullable="false" />
+          <Property Name="LogiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SijaintiID" Type="int" />
           <Property Name="PaikkaID" Type="int" />
           <Property Name="KirjaajaID" Type="int" />
@@ -143,7 +143,7 @@
           <Key>
             <PropertyRef Name="LogiID" />
           </Key>
-          <Property Name="LogiID" Type="Int32" Nullable="false" />
+          <Property Name="LogiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SijaintiID" Type="Int32" />
           <Property Name="PaikkaID" Type="Int32" />
           <Property Name="KirjaajaID" Type="Int32" />

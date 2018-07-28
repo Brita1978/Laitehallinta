@@ -1,0 +1,74 @@
+﻿@model Laitehallinta.Models.Logi
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Logi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SijaintiID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SijaintiID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaikkaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaikkaID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KirjaajaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KirjaajaID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kirjattusisään)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kirjattusisään)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Henkilot.Etunimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Henkilot.Etunimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Laitteet.Sarjanumero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Laitteet.Sarjanumero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tilat.Tarkennus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tilat.Tarkennus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LogiID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

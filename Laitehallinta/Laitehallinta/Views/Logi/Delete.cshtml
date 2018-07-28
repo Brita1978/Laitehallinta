@@ -1,0 +1,80 @@
+﻿@model Laitehallinta.Models.Logi
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Logi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SijaintiID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SijaintiID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaikkaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaikkaID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KirjaajaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KirjaajaID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kirjattusisään)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kirjattusisään)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Henkilot.Etunimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Henkilot.Etunimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Laitteet.Sarjanumero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Laitteet.Sarjanumero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tilat.Tarkennus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tilat.Tarkennus)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
